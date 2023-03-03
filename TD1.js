@@ -1,14 +1,13 @@
 const fs = require("fs");
-let users = fs.readFileSync("users.json"); //Importer le fichier
-const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-const readlineSync = require("readline-sync");
-const chalk = require("chalk");
-
+const readlineSync = require("readline-sync"); //Pour pouvoir récuperer les input utilisateurs
+const chalk = require("chalk"); //Pour mettre de la couleur dans le terminal
 
 
 function Pays()
 {
     var liste = new Map;
+    let users = fs.readFileSync("users.json"); //Importer le fichier
+    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
 
     //Parcourir le tableau en enregistrant les pays dans une map et en incrémentant la valeur pour ceux déja présents
     for(var i=0;i<tableau.length; i++)
@@ -29,10 +28,11 @@ function Pays()
 }
 
 
-
 function Societes()
 {
     var liste = new Map;
+    let users = fs.readFileSync("users.json"); //Importer le fichier
+    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
 
     //Parcourir le tableau en enregistrant les sociétés dans une map et en incrémentant la valeur pour ceux déja présents
     for(var i=0;i<tableau.length; i++)
@@ -53,16 +53,58 @@ function Societes()
     console.log(liste);
 }
 
+function CreationID()
+{
+    let id;
+    let users = fs.readFileSync("users.json"); //Importer le fichier
+    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    id=tableau[tableau.length].id +1;
+    return id;
+}
 
-function main()
+function AjouterUtilisateur()
+{
+    let users = fs.readFileSync("users.json"); //Importer le fichier
+    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+
+    const email = readlineSync.question(chalk.red("EMail : "));
+    const first = readlineSync.question(chalk.red("\nPrenom : "));
+    const last = readlineSync.question(chalk.red("\nNom : "));
+    const company =readlineSync.question(chalk.red("\nSocietes : "));
+    const created =readlineSync.question(chalk.red("\nCreation : "));
+    const country =readlineSync.question(chalk.red("\nPays : "));  
+
+    let user = {
+        id: CreationID(),
+        email: email,
+        first: first,
+        last: last,
+        company: company,
+        created_at: created,
+        country: country
+    };
+
+    tableau.push(user);
+
+    var newdata = JSON.stringify(users);
+    fs.writeFile("users.json", newdata, err => {
+        if(err) throw err;
+        
+        console.log(chalk.yellow("Utilisateur ajouté"));
+    });
+    return 0;
+}
+
+function afficher()
 {
     let choix = 0;
-    while(choix!=3)
+    while(choix!=4)
     {
         console.log(chalk.blue("Quel est votre choix : \n\
-        1 : Liste des sociétées \n\
+        1 : Liste des sociétés \n\
         2 : Liste des Pays \n\
-        3 : Quitter \n "));
+        3 : Ajouter Utilisateur"));
+        console.log(chalk.green("        4 : Quitter \n "));
 
         choix = readlineSync.question(""); //Recuperer la valeur de l'utiliateur
 
@@ -76,8 +118,12 @@ function main()
             console.log(chalk.red("Liste des pays : \n"));
             Pays();
         }
+        if(choix==3)
+        {
+            AjouterUtilisateur();
+        }
     }
     return 0;
 }
 
-main();
+afficher();
