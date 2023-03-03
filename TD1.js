@@ -1,8 +1,8 @@
 const fs = require("fs");
 let users = fs.readFileSync("users.json"); //Importer le fichier
 const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-
-
+const readlineSync =require("readline-sync");
+const chalk = require("chalk");
 
 
 
@@ -56,10 +56,28 @@ function Societes()
 
 function main()
 {
-    console.log("Liste des pays : \n");
-    Pays();
-    console.log("\nListe des sociétés : \n");
-    Societes();
+    let choix = 0;
+    while(choix!=3)
+    {
+        console.log("Quel est votre choix : \n\
+        1 : Liste des sociétées \n\
+        2 : Liste des Pays \n\
+        3 : Quitter \n ");
+
+        choix = readlineSync.question(""); //Recuperer la valeur de l'utiliateur
+
+        if(choix==1)
+        {
+            console.log(chalk.red("\nListe des sociétés : \n"));
+            Societes();
+        }
+        if(choix==2)
+        {
+            console.log(chalk.red("Liste des pays : \n"));
+            Pays();
+        }
+    }
+    return 0;
 }
 
 main();
