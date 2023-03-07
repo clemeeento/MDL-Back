@@ -59,7 +59,7 @@ function CreationID()
     let users = fs.readFileSync("users.json"); //Importer le fichier
     const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
     var taille=tableau.length;
-    id=tableau[taille].id +1;
+    id=tableau[taille-1].id +1;
     return id;
 }
 
