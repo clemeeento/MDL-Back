@@ -89,7 +89,7 @@ function AjouterUtilisateur()
 
     tableau.push(user);
 
-    var newdata = JSON.stringify(users);
+    var newdata = JSON.stringify(tableau);
     fs.writeFile("users.json", newdata, err => {
         if(err) throw err;
         
