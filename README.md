@@ -8,15 +8,15 @@ Enoncé : Vous devez réaliser une application en NodeJS qui permet de lire le f
 
 - La liste des pays et le compteur des utilisateurs à coté par ordre décroissant Ex :
 
- - Sénégal - 45
- - France - 38
- - Italie - 32 etc
+- Sénégal - 45
+- France - 38
+- Italie - 32 etc
 
 - La liste des sociétés et le compteur des utilisateurs à côté par ordre décroissant Ex :
 
- - Microsot - 45
- - Google - 38
- - Facebook - 32 etc
+- Microsot - 45
+- Google - 38
+- Facebook - 32 etc
 
 Vous apprendrez à :
 
