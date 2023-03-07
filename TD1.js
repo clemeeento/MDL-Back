@@ -63,15 +63,13 @@ function CreationID()
     return id;
 }
 
-function CreationDate()
-{
-
-}
 
 function AjouterUtilisateur()
 {
     let users = fs.readFileSync("users.json"); //Importer le fichier
     const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    
+    const created = new Date();
 
     const email = readlineSync.question(chalk.red("EMail : "));
     const first = readlineSync.question(chalk.red("\nPrenom : "));
@@ -85,7 +83,7 @@ function AjouterUtilisateur()
         first: first,
         last: last,
         company: company,
-        created_at: CreationDate(),
+        created_at: created,
         country: country
     };
 
