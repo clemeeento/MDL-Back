@@ -55,10 +55,11 @@ function Societes()
 
 function CreationID()
 {
-    let id;
+    var id;
     let users = fs.readFileSync("users.json"); //Importer le fichier
     const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-    id=tableau[tableau.length].id +1;
+    var taille=tableau.length;
+    id=tableau[taille].id +1;
     return id;
 }
 
