@@ -2,12 +2,17 @@ const fs = require("fs");
 const readlineSync = require("readline-sync"); //Pour pouvoir récuperer les input utilisateurs
 const chalk = require("chalk"); //Pour mettre de la couleur dans le terminal
 
+function CreationTableau()
+{
+    let users = fs.readFileSync("users.json"); //Importer le fichier
+    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    return tableau
+}
 
 function Pays()
 {
     var liste = new Map;
-    let users = fs.readFileSync("users.json"); //Importer le fichier
-    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    const tableau = CreationTableau();
 
     //Parcourir le tableau en enregistrant les pays dans une map et en incrémentant la valeur pour ceux déja présents
     for(var i=0;i<tableau.length; i++)
@@ -31,8 +36,7 @@ function Pays()
 function Societes()
 {
     var liste = new Map;
-    let users = fs.readFileSync("users.json"); //Importer le fichier
-    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    const tableau = CreationTableau();
 
     //Parcourir le tableau en enregistrant les sociétés dans une map et en incrémentant la valeur pour ceux déja présents
     for(var i=0;i<tableau.length; i++)
@@ -56,19 +60,14 @@ function Societes()
 function CreationID()
 {
     var id;
-    let users = fs.readFileSync("users.json"); //Importer le fichier
-    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    const tableau = CreationTableau();
     var taille=tableau.length;
     id=tableau[taille-1].id +1;
     return id;
 }
 
-
-function AjouterUtilisateur()
+function CreationUtilisateur()
 {
-    let users = fs.readFileSync("users.json"); //Importer le fichier
-    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-    
     const created = new Date();
 
     const email = readlineSync.question(chalk.red("EMail : "));
@@ -86,6 +85,14 @@ function AjouterUtilisateur()
         created_at: created,
         country: country
     };
+
+    return user;
+}
+
+function AjouterUtilisateur()
+{
+    const tableau = CreationTableau();
+    let user=CreationUtilisateur();
 
     tableau.push(user);
 
