@@ -6,7 +6,7 @@ function CreationTableau()
 {
     let users = fs.readFileSync("users.json"); //Importer le fichier
     const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-    return tableau
+    return tableau;
 }
 
 function Pays()
@@ -91,17 +91,11 @@ function CreationUtilisateur()
 
 function AjouterUtilisateur()
 {
-    const tableau = CreationTableau();
+    const tableau=CreationTableau();
     let user=CreationUtilisateur();
 
     tableau.push(user);
-
-    var newdata = JSON.stringify(tableau);
-    fs.writeFile("users.json", newdata, err => {
-        if(err) throw err;
-        
-        console.log(chalk.yellow("Utilisateur ajouté"));
-    });
+    fs.writeFileSync("users.json", JSON.stringify(user));
     return 0;
 }
 
