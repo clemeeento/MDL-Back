@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const fichier = "./Data/users.json";
+const fichier = "users.json";
 
 let dataLayer = {
 

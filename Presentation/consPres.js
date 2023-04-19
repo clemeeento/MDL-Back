@@ -6,7 +6,7 @@ function CreationTableau()
 {
     let users = fs.readFileSync("users.json"); //Importer le fichier
     const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
-    return tableau
+    return tableau;
 }
 
 function Pays()
@@ -136,4 +136,4 @@ function afficher()
     return 0;
 }
 
-afficher();
+module.exports = afficher();
