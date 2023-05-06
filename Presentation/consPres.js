@@ -91,25 +91,11 @@ function CreationUtilisateur()
 
 function AjouterUtilisateur()
 {
-<<<<<<< HEAD
-    const tableau = CreationTableau();
-    let user=CreationUtilisateur();
-
-    tableau.push(user);
-
-    var newdata = JSON.stringify(tableau);
-    fs.writeFile("users.json", newdata, err => {
-        if(err) throw err;
-        
-        console.log(chalk.yellow("Utilisateur ajouté"));
-    });
-=======
     const tableau=CreationTableau();
     let user=CreationUtilisateur();
 
     tableau.push(user);
     fs.writeFileSync("users.json", JSON.stringify(user));
->>>>>>> d46cae67f7df4ac1a416c5baf301ef110519a369
     return 0;
 }
 
