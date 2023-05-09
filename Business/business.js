@@ -34,6 +34,10 @@ const business = {
     delCustomer : function(id){
         return dataL.delCustomer(id);
     },
+
+    modifCustomer : function(customer){
+        return dataL.modifCustomer(customer);
+    },
 };
 
 module.exports = business;

@@ -46,6 +46,24 @@ let dataLayer = {
         return tableau;
     },
 
+    modifCustomer : function(newCustomer){
+        // Lit le fichier JSON et le parse en objet
+        let tableau = JSON.parse(fs.readFileSync(fichier, "utf-8"));
+        // trouver l'index du client à modifier
+        const id = tableau.find(c => c.id == newCustomer.id);
+        // effectuer les modifications nécessaires
+        id.last = newCustomer.last;
+        id.first = newCustomer.first;
+        id.email = newCustomer.email;
+        id.country = newCustomer.country;
+        id.company = newCustomer.company;
+        // enregistrer les modifications dans le fichier JSON
+        fs.writeFileSync(fichier, JSON.stringify(tableau), (error) => {
+            if(error) throw error;
+        });
+        return tableau;
+    },
+
 };
 
 module.exports =dataLayer;

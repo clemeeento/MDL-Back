@@ -38,6 +38,13 @@ const apiServ = {
             res.json(resCustomers);
         });
 
+        app.put("/api/customers", function(req, res){
+            const updatedCustomer = req.body; 
+            console.log(updatedCustomer);
+            business.modifCustomer(updatedCustomer);
+            res.send("Modification du client réussie");
+        });
+
 
         app.listen(port, function(){ console.log("Serveur lancé sur le port " +port);});
     }
