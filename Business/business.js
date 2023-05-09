@@ -31,8 +31,8 @@ const business = {
         return resCustomers;
     },
 
-    delCustomer : function(customer){
-        return dataL.delCustomer(customer);
+    delCustomer : function(id){
+        return dataL.delCustomer(id);
     },
 };
 

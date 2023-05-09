@@ -21,10 +21,10 @@ const apiServ = {
         //     res.json(customers);
         // });
 
-        app.delete("/api/customers", function(req, res) 
+        app.delete("/api/customers/:id", function(req, res) 
         {
-            console.log(req.body.id);
-            business.delCustomer(req.body.id);
+            const customerId = req.params.id;
+            business.delCustomer(customerId);
             res.send("Suppression du client réussi");
         });
 
