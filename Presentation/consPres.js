@@ -103,16 +103,37 @@ function AjouterUtilisateur()
     return 0;
 }
 
+function modifierUtilisateur(){
+    let tableau=CreationTableau();
+
+    console.log(chalk.red("Quel est l'id ? \n"));
+
+    const id = parseInt(readlineSync.question(""));
+
+    const modif  = tableau.find(c => c.id == id);
+
+    modif.email = readlineSync.question(chalk.red("EMail : "));
+    modif.first = readlineSync.question(chalk.red("\nPrenom : "));
+    modif.last = readlineSync.question(chalk.red("\nNom : "));
+    modif.company =readlineSync.question(chalk.red("\nSocietes : "));
+    modif.country =readlineSync.question(chalk.red("\nPays : "));  
+    
+    fs.writeFileSync(fichier, JSON.stringify(tableau), (error) => {
+        if(error) throw error;
+    });
+}
+
 function afficher()
 {
     let choix = 0;
-    while(choix!=4)
+    while(choix!=6)
     {
         console.log(chalk.blue("Quel est votre choix : \n\
         1 : Liste des sociétés \n\
         2 : Liste des Pays \n\
-        3 : Ajouter Utilisateur"));
-        console.log(chalk.green("        4 : Quitter \n "));
+        3 : Ajouter Utilisateur \n\
+        4 : Modifier Utilisateur" ));
+        console.log(chalk.green("        6 : Quitter \n "));
 
         choix = readlineSync.question(""); //Recuperer la valeur de l'utiliateur
 
@@ -129,6 +150,10 @@ function afficher()
         if(choix==3)
         {
             AjouterUtilisateur();
+        }
+        if(choix==4)
+        {
+            modifierUtilisateur();
         }
     }
     return 0;
