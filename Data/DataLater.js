@@ -29,6 +29,25 @@ let dataLayer = {
             return result;  
         }
     },
+
+     delCustomer: function(id) {
+        tableau = JSON.parse(fs.readFileSync(fichier, "utf-8"));
+        const index = tableau.find(c => c.id == id);
+        console.log(index);
+        if (index !== -1) {
+            tableau.splice(index.id - 1, 1); // Supprimer une entrée à l'index spécifié
+            const keys = Object.keys(tableau);
+            const length = keys.length;
+            console.log(length);
+            for (let i = index.id - 1; i < length; i++)
+             {
+                tableau[i].id = tableau[i].id - 1; // Décrémenter l'ID de chaque entrée dans le tableau
+              }
+            fs.writeFileSync(fichier, JSON.stringify(tableau)); // Écrire les données mises à jour dans le fichier
+          }
+          return tableau;
+        },
+
 };
 
 module.exports =dataLayer;

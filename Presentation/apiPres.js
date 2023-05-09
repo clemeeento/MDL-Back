@@ -21,6 +21,13 @@ const apiServ = {
         //     res.json(customers);
         // });
 
+        app.delete("/api/customers", function(req, res) 
+        {
+            console.log(req.body.id);
+            business.delCustomer(req.body.id);
+            res.send("Suppression du client réussi");
+        });
+
         app.get("/api/customers", function(req, res){
 
             const number = req.query.number;

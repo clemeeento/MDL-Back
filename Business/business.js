@@ -30,6 +30,10 @@ const business = {
       
         return resCustomers;
     },
+
+    delCustomer : function(customer){
+        return dataL.delCustomer(customer);
+    },
 };
 
 module.exports = business;
