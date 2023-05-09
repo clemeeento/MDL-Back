@@ -2,10 +2,12 @@ const fs = require("fs");
 const readlineSync = require("readline-sync"); //Pour pouvoir récuperer les input utilisateurs
 const chalk = require("chalk"); //Pour mettre de la couleur dans le terminal
 
+const fichier = "./Data/users.json";
+
 function CreationTableau()
 {
-    let users = fs.readFileSync("users.json"); //Importer le fichier
-    const tableau = JSON.parse(users);  //Recupérer le tableau du fichier
+    let users = fs.readFileSync(fichier); //Importer le fichier
+    let tableau = JSON.parse(users);  //Recupérer le tableau du fichier
     return tableau;
 }
 
@@ -91,11 +93,13 @@ function CreationUtilisateur()
 
 function AjouterUtilisateur()
 {
-    const tableau=CreationTableau();
+    let tableau=CreationTableau();
     let user=CreationUtilisateur();
 
     tableau.push(user);
-    fs.writeFileSync("users.json", JSON.stringify(user));
+    fs.writeFileSync(fichier, JSON.stringify(tableau), (error) => {
+        if(error) throw error;
+    });
     return 0;
 }
 
