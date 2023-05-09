@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require("express");
 const business = require("../Business/business");
 const cors =require("cors");
@@ -43,6 +44,24 @@ const apiServ = {
             const updatedCustomer = req.body; 
             business.modifCustomer(updatedCustomer);
             res.send("Modification du client réussie");
+        });
+
+        app.post("/api/customers", function(req, res) {
+            // Récupération du nombre de clients total afin de mettre un id
+            const total = business.getCustomers();
+            let id = total.total + 1;
+            // Préparation du nouveau client
+            const newCustomer ={
+                id : id,
+                email : req.body.email,
+                first : req.body.first,
+                last : req.body.last,
+                company : req.body.company,
+                created_at : req.body.created_at,
+                country : req.body.country
+            };
+            // Ajout du client
+            res = business.addCustomers(newCustomer);
         });
 
 

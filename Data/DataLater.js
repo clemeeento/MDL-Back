@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const fichier = "users.json";
+const fichier = "./Data/users.json";
 
 let dataLayer = {
 
@@ -62,6 +62,18 @@ let dataLayer = {
             if(error) throw error;
         });
         return tableau;
+    },
+    addCustomers : function(newCustomer){
+        // Lit le fichier JSON et ajoute à un client à la fin de celui-ci
+        let data = fs.readFileSync(fichier, "utf-8");
+        let added = JSON.parse(data);
+        added.push(newCustomer);
+        // Enregistre le fichier JSON
+        fs.writeFileSync(fichier, JSON.stringify(added), (error) => {
+            if(error) throw error;
+        });
+        // Le retourne
+        return added;
     },
 
 };

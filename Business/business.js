@@ -38,6 +38,10 @@ const business = {
     modifCustomer : function(customer){
         return dataL.modifCustomer(customer);
     },
+
+    addCustomers : function(customer){
+        return dataL.addCustomers(customer);
+    },
 };
 
 module.exports = business;
