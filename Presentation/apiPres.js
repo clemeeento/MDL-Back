@@ -8,6 +8,7 @@ const apiServ = {
 
     start : function(port) {
 
+        app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json());
         app.use(cors());
 
@@ -40,7 +41,6 @@ const apiServ = {
 
         app.put("/api/customers", function(req, res){
             const updatedCustomer = req.body; 
-            console.log(updatedCustomer);
             business.modifCustomer(updatedCustomer);
             res.send("Modification du client réussie");
         });
